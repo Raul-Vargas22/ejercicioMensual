@@ -1,0 +1,46 @@
+package com.example.ejerciciomensual.Adaptador
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.ejerciciomensual.MainActivity
+import com.example.ejerciciomensual.R
+import com.example.ejerciciomensual.dataCursos
+
+class CursosAdaptador (
+    private val activity: MainActivity,
+    private var listaCursos: List<dataCursos>
+)
+    : RecyclerView.Adapter<CursosAdaptador.CursoViewHolder>() {
+    class CursoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        val tvNombre: TextView = itemView.findViewById(R.id.textView)
+        val tvSalon: TextView = itemView.findViewById(R.id.textView3)
+        val imgCurso: ImageView = itemView.findViewById(R.id.imageView)
+
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CursoViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.tarjeta_curso, parent, false)
+        return CursoViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: CursoViewHolder, position: Int) {
+        val curso = listaCursos[position]
+
+        holder.tvNombre.text = curso.nombre_curso
+        holder.tvSalon.text = "Salón: " + curso.salon
+    }
+
+    override fun getItemCount(): Int {
+        return listaCursos.size
+    }
+    fun actualizarLista(nuevaLista: List<dataCursos>) {
+        listaCursos = nuevaLista
+        notifyDataSetChanged()
+    }
+}
