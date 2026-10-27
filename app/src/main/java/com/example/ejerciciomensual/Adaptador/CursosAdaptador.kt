@@ -17,9 +17,9 @@ class CursosAdaptador (
     : RecyclerView.Adapter<CursosAdaptador.CursoViewHolder>() {
     class CursoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val tvNombre: TextView = itemView.findViewById(R.id.textView)
-        val tvSalon: TextView = itemView.findViewById(R.id.textView3)
-        val imgCurso: ImageView = itemView.findViewById(R.id.imageView)
+        val tvNombre: TextView = itemView.findViewById(R.id.txtCurso)
+        val tvSalon: TextView = itemView.findViewById(R.id.txtSalon)
+        val imgCurso: ImageView = itemView.findViewById(R.id.imgCurso)
 
     }
 
