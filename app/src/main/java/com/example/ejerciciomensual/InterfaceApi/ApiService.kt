@@ -1,8 +1,10 @@
 package com.example.ejerciciomensual.InterfaceApi
 
+import com.example.ejerciciomensual.modelo.dataCursos
 import retrofit2.http.GET
 
 interface ApiService {
-    @GET(value = "obtenerCategoriasCursos.php")
-    suspend fun obtenerCategoriasCursos(): List<dataCategorias>
+
+    @GET("Catalogo.php")
+    suspend fun obtenerCursos(): List<dataCursos>
 }
