@@ -1,10 +1,10 @@
 package Modelo
 
 class clsCategoriasCursosModelo {
-    suspend fun obtenerCategoriasCursos():<dataCategorias>{
+    suspend fun obtenerCategoriasCursos(): List<dataCategoriasCursos>{
         val datos = RetrofitCliente.apiService.obtenerCategoriasCursos()//
 
-        val listaFinal = mutableListOf(dataCategorias(0, "Seleccione una categoria"))
+        val listaFinal = mutableListOf(dataCategoriasCursos(0, "Seleccione una categoria"))
         listaFinal.addAll(datos)
 
         return listaFinal

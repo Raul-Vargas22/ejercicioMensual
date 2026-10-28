@@ -1,17 +1,18 @@
 package Modelo
 
 import com.example.ejerciciomensual.InterfaceApi.ApiService
-import retrofit2.Retrofit
-
+import kotlinx.serialization.json.Json
 object RetrofitCliente {
-    private const val BASE_URL=""///aqui ira la URL del api
+    private const val BASE_URL="http://192.168.1.100/api_cursos/"///aqui ira la URL del api
 
-    private val jsonConfig = json {
-
+    private val jsonConfig = Json {
+        ignoreUnknownKeys = true
+        coerceInputValues= true
+        isLeteinit= true
     }
 
     val apiService: ApiService by lazy {
-        val contenType = "aplication/json".toMediaType()
+        val contenType = "application/json".toMediaType()
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConvertFactory(jsonConfig.asConvertFactory(contenType= contenType))

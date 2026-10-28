@@ -5,14 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vistaRegistros">
+    tools:context=".vistaEstadoInscripciones">
 
     <TextView
         android:id="@+id/txtTitulo"
         android:layout_width="270dp"
         android:layout_height="40dp"
         android:layout_marginTop="4dp"
-        android:text="txtTitulo"
+        android:text="Registro de cursos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,15 +21,42 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="409dp"
         android:layout_height="729dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="108dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spnCategorias"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Spinner
         android:id="@+id/spnCategorias"
         android:layout_width="209dp"
-        android:layout_height="36dp"
-        app:layout_constraintEnd_toEndOf="@+id/txtTitulo"
-        app:layout_constraintStart_toStartOf="@+id/txtTitulo"
-        tools:layout_editor_absoluteY="55dp" />
+        android:layout_height="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtFiltrar" />
+
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="Volver al catálogo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/txtFiltrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="Filtrar por:"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtTitulo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
