@@ -1,4 +1,4 @@
-package com.example.ejerciciomensual
+package com.example.ejerciciomensual.modelo
 
 data class dataCursos (
     val id_curso: String,

@@ -1,4 +1,4 @@
-package com.example.ejerciciomensual
+package com.example.ejerciciomensual.vista
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -8,6 +8,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ejerciciomensual.Adaptador.CursosAdaptador
+import com.example.ejerciciomensual.R
 
 class MainActivity : AppCompatActivity() {
     private lateinit var adapterCursos: CursosAdaptador

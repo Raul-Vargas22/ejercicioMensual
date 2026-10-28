@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.ejerciciomensual.MainActivity
+import com.example.ejerciciomensual.vista.MainActivity
 import com.example.ejerciciomensual.R
-import com.example.ejerciciomensual.dataCursos
+import com.example.ejerciciomensual.modelo.dataCursos
 
 class CursosAdaptador (
     private val activity: MainActivity,
