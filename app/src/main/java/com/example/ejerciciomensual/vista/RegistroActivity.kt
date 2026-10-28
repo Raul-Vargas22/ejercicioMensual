@@ -35,19 +35,40 @@ class RegistroActivity : AppCompatActivity() {
         presentador = RegistroPresentador(this)
 
         btnConfirmarInscripcion.setOnClickListener(this::ejecutarAccionInscribirse)
-       // btnCancelar.setOnClickListener(this::ejecutarAccionCancelar)
+        btnCancelar.setOnClickListener(this::ejecutarAccionCancelar)
         btnRegresar.setOnClickListener{finish()}
+        txtMatricula.setOnFocusChangeListener { _, tieneFoco ->
+            if (!tieneFoco) {
+                val matricula = txtMatricula.text.toString().trim()
+
+                if (matricula.isNotEmpty()) {
+                    presentador.buscarAlumno(matricula)
+                }
+            }
+        }
 
     }
-    private fun ejecutarAccionInscribirse(v: View){
+
+    private fun ejecutarAccionInscribirse(v: View) {
         val matricula = txtMatricula.text.toString()
         val correo = txtCorreo.text.toString()
-        val valido = presentador.validarInscripcion(matricula,correo,1)
-        if(valido){
-            Toast.makeText(this,"Datos validos", Toast.LENGTH_SHORT).show()
-        }else{
-            Toast.makeText(this,"completa los campos, faltan datos", Toast.LENGTH_SHORT).show()
-        }
+
+        presentador.registrarInscripcion(matricula, correo,1)
+    }
+
+    private fun ejecutarAccionCancelar(v: View) {
+        txtMatricula.text.clear()
+        txtCorreo.text.clear()
+        txtFechaRegistro.text.clear()
+        finish()
+    }
+
+
+    fun mostrarMensaje(mensaje: String) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
+    }
+    fun mostrarCorreo(correo: String) {
+        txtCorreo.setText(correo)
     }
 
 }

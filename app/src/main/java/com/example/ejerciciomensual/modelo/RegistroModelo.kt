@@ -1,8 +1,15 @@
+
 package com.example.ejerciciomensual.modelo
+
 class RegistroModelo {
-    fun validarDatos(matricula: String, correo: String, idCurso: Int): Boolean {
-        return  matricula.isNotBlank() && correo.isNotBlank() && idCurso>0
+
+    suspend fun buscarAlumno(matricula: String): RespuestaAlumno {
+        return RetrofitCliente.apiService.buscarAlumno(
+            matricula
+        )
     }
 
-
+    suspend fun registrarInscripcion(matricula: String, idCurso: Int): RespuestaInscripcion {
+        return RetrofitCliente.apiService.registrarInscripcion(matricula, idCurso)
+    }
 }
