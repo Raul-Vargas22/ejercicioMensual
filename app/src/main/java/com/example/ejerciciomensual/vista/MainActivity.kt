@@ -12,6 +12,8 @@ import com.example.ejerciciomensual.Adaptador.CursosAdaptador
 import com.example.ejerciciomensual.R
 import com.example.ejerciciomensual.modelo.dataCursos
 import com.example.ejerciciomensual.presentador.clsCursosPresentador
+import android.widget.ArrayAdapter
+import android.widget.Spinner
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +25,22 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
+        val spnCarrera = findViewById<Spinner>(R.id.spnCarrera)
+
+        val carreras = arrayOf("INGENIERÍA EN DESARROLLO DE SOFTWARE")
+
+        val adapterCarreras = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_item,
+            carreras
+        )
+
+        adapterCarreras.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item
+        )
+
+        spnCarrera.adapter = adapterCarreras
 
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
