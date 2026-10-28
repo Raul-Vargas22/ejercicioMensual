@@ -6,4 +6,7 @@ class clsCursosModelo {
         val datos = RetrofitCliente.apiService.obtenerCursos()
         return datos
     }
+    suspend fun obtenerDetalleCursos(cursoId: Int): List<dataImagenesCursos> {
+        return RetrofitCliente.apiService.detalleCursos(cursoId)
+    }
 }
