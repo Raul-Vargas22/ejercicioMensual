@@ -1,4 +1,7 @@
 package com.example.ejerciciomensual.modelo
+import kotlinx.serialization.Serializable
+
+@Serializable
 
 data class dataCursos (
     val id_curso: String,
