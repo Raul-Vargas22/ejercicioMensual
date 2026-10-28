@@ -11,7 +11,7 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imgCurso"
             android:layout_width="90dp"
             android:layout_height="90dp"
             tools:srcCompat="@tools:sample/avatars" />
