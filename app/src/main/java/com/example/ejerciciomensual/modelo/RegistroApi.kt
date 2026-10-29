@@ -11,7 +11,9 @@ interface RegistroApi {
 
     @FormUrlEncoded
     @POST("registrar_inscripcion.php")
-    suspend fun registrarInscripcion(@Field("matricula") matricula: String,@Field("id_curso") idCurso: Int): RespuestaInscripcion
+    suspend fun registrarInscripcion(@Field("matricula") matricula: String,@Field("id_curso") idCurso: Int): dataRegistrarInscripcion
     @GET("buscar_alumno.php")
-    suspend fun buscarAlumno(@Query("matricula") matricula: String): RespuestaAlumno
+    suspend fun buscarAlumno(@Query("matricula") matricula: String): dataBuscarAlumno
+    fun detalleCursos(cursoId: Int): List<dataImagenesCursos>
+
 }

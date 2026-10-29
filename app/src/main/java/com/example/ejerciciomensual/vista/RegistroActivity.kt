@@ -37,6 +37,7 @@ class RegistroActivity : AppCompatActivity() {
         btnConfirmarInscripcion.setOnClickListener(this::ejecutarAccionInscribirse)
         btnCancelar.setOnClickListener(this::ejecutarAccionCancelar)
         btnRegresar.setOnClickListener{finish()}
+
         txtMatricula.setOnFocusChangeListener { _, tieneFoco ->
             if (!tieneFoco) {
                 val matricula = txtMatricula.text.toString().trim()

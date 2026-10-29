@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.ejerciciomensual.R
 import com.example.ejerciciomensual.modelo.dataImagenesCursos
 import com.bumptech.glide.Glide
-
 class GaleriaAdaptador(private var listaImagenes: List<dataImagenesCursos>) : RecyclerView.Adapter<GaleriaAdaptador.GaleriaViewHolder>() {
 
     class GaleriaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -23,7 +22,7 @@ class GaleriaAdaptador(private var listaImagenes: List<dataImagenesCursos>) : Re
     override fun onBindViewHolder(holder: GaleriaViewHolder, position: Int) {
 
         val imagen = listaImagenes[position]
-        val baseUrl = "http://10.226.139.102/api_cursos/"
+        val baseUrl = "http://10.121.172.34/api_cursos/"
         val urlImagenCompleta = baseUrl + imagen.urlImagen
 
         Glide.with(holder.itemView.context)

@@ -46,7 +46,7 @@ class RegistroPresentador(private val vista: RegistroActivity) {
                 }
 
             } catch (e: Exception) {
-                vista.mostrarMensaje("Error al consultar la matrícula")
+                vista.mostrarMensaje("Error: ${e.javaClass.simpleName}: ${e.message}")
             }
         }
     }
