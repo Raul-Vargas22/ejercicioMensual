@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    kotlin("plugin.serialization") version "2.4.10"
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -38,13 +38,15 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:3.0.0")
     implementation("com.squareup.okhttp3:okhttp:5.5.1")
     implementation("com.github.bumptech.glide:glide:4.16.0")
-implementation(libs.androidx.activity.ktx)
-implementation(libs.androidx.appcompat)
-implementation(libs.androidx.constraintlayout)
-implementation(libs.androidx.core.ktx)
-implementation(libs.androidx.recyclerview)
-implementation(libs.material)
-testImplementation(libs.junit)
-androidTestImplementation(libs.androidx.espresso.core)
-androidTestImplementation(libs.androidx.junit)
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit)
+
+
 }
