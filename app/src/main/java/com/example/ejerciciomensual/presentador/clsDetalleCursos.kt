@@ -14,12 +14,15 @@ class clsDetalleCursos(private val vista: detalleCursos) {
     fun cargarDetalleCurso(cursoId: Int) {
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                val listaImagenes: List<dataImagenesCursos> = modelo.obtenerDetalleCursos(cursoId)
+                val listaImagenes: List<dataImagenesCursos> =
+                    modelo.obtenerDetalleCursos(cursoId)
 
                 vista.mostrarImagenes(listaImagenes)
 
             } catch (e: Exception) {
-                vista.mostrarError("Error al cargar detalle: ${e.localizedMessage}")
+                vista.mostrarError(
+                    "Error al cargar detalle: ${e.localizedMessage}"
+                )
             }
         }
     }
