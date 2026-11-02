@@ -1,5 +1,5 @@
-<?php
-include("Conexion.php");
++<?php
+include("config/Conexion.php");
 $consulta = "SELECT * FROM cursos";
 $resultado = $conexion->query($consulta);
 $cursos = array();
