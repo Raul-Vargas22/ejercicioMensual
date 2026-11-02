@@ -15,7 +15,7 @@ class GaleriaAdaptador(private var listaImagenes: List<dataImagenesCursos>) : Re
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GaleriaViewHolder {
-        val vista = LayoutInflater.from(parent.context).inflate(R.layout.item_curso, parent, false)
+        val vista = LayoutInflater.from(parent.context).inflate(R.layout.galeria_cursos, parent, false)
         return GaleriaViewHolder(vista)
     }
 

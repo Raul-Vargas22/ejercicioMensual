@@ -11,7 +11,6 @@ import retrofit2.http.POST
 import retrofit2.http.Field
 
 interface ApiService {
-
     @GET("Catalogo.php")
     suspend fun obtenerCursos(): List<dataCursos>
 
