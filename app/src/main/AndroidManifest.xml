@@ -30,7 +30,7 @@
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name=".vista.MainActivity"
+            android:name=".vista.RegistroActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
 
