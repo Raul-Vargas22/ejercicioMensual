@@ -9,6 +9,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.ejerciciomensual.R
 import com.example.ejerciciomensual.modelo.dataImagenesCursos
+import androidx.viewpager2.widget.ViewPager2
+import com.example.ejerciciomensual.Adaptador.GaleriaAdaptador
+import com.example.ejerciciomensual.presentador.clsDetalleCursos
 
 class detalleCursos : AppCompatActivity() {
 
@@ -18,6 +21,10 @@ class detalleCursos : AppCompatActivity() {
     private lateinit var txtLugar: TextView
     private lateinit var txtTotalHoras: TextView
     private lateinit var txtCupoMaximo: TextView
+
+    private lateinit var galeriaAdaptador: GaleriaAdaptador
+
+    private lateinit var presentador: clsDetalleCursos
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +67,16 @@ class detalleCursos : AppCompatActivity() {
         txtCupoMaximo =
             findViewById(R.id.txtCupoMaximo)
 
+        val galeria = findViewById<ViewPager2>(R.id.imgCursos)
+
+        galeriaAdaptador = GaleriaAdaptador(emptyList())
+        galeria.adapter = galeriaAdaptador
+
+        presentador = clsDetalleCursos(this)
+
+        val idCurso = intent.getIntExtra("ID_CURSO", 0)
+        presentador.cargarDetalleCurso(idCurso)
+
         val nombreCurso =
             intent.getStringExtra("NOMBRE_CURSO") ?: ""
 
@@ -81,26 +98,19 @@ class detalleCursos : AppCompatActivity() {
         txtNombreCurso.text =
             nombreCurso
 
-        txtCodigoCurso.text =
-            "Código: " + codigoCurso
+        txtCodigoCurso.text = "Código: " + codigoCurso
 
-        txtDescripcionCurso.text =
-            descripcionCurso
+        txtDescripcionCurso.text = descripcionCurso
 
-        txtLugar.text =
-            "Lugar: " + lugar
+        txtLugar.text = "Lugar: " + lugar
 
-        txtTotalHoras.text =
-            "Total horas: " + totalHoras
+        txtTotalHoras.text = "Total horas: " + totalHoras
 
-        txtCupoMaximo.text =
-            "Cupo máximo: " + cupoMaximo
+        txtCupoMaximo.text = "Cupo máximo: " + cupoMaximo
     }
 
-    fun mostrarImagenes(
-        listaImagenes: List<dataImagenesCursos>
-    ) {
-
+    fun mostrarImagenes(listaImagenes: List<dataImagenesCursos>) {
+        galeriaAdaptador.actualizarLista(listaImagenes)
     }
 
     fun mostrarError(mensaje: String) {

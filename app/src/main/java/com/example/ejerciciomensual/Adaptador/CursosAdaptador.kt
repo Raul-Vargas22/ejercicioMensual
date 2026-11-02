@@ -11,10 +11,7 @@ import com.example.ejerciciomensual.R
 import com.example.ejerciciomensual.modelo.dataCursos
 import com.example.ejerciciomensual.vista.MainActivity
 
-class CursosAdaptador(
-    private val activity: MainActivity,
-    private var listaCursos: List<dataCursos>
-) : RecyclerView.Adapter<CursosAdaptador.CursoViewHolder>() {
+class CursosAdaptador(private val activity: MainActivity, private var listaCursos: List<dataCursos>) : RecyclerView.Adapter<CursosAdaptador.CursoViewHolder>() {
 
     class CursoViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
@@ -35,10 +32,7 @@ class CursosAdaptador(
             itemView.findViewById(R.id.btnRegistrarse)
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): CursoViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CursoViewHolder {
 
         val view = LayoutInflater
             .from(parent.context)
@@ -64,17 +58,14 @@ class CursosAdaptador(
         holder.tvSalon.text =
             "Salón: " + curso.salon
 
-        when (curso.codigo_curso) {
+        when {
+                curso.nombre_curso.contains("Programacion", ignoreCase = true) -> {
+                holder.imgCurso.setImageResource(R.drawable.programacion)
+             }
 
-            "IS102" ->
-                holder.imgCurso.setImageResource(
-                    R.drawable.programacion
-                )
-
-            "BD201" ->
-                holder.imgCurso.setImageResource(
-                    R.drawable.basedatos
-                )
+                curso.nombre_curso.contains("Base de datos", ignoreCase = true) -> {
+                holder.imgCurso.setImageResource(R.drawable.basedatos)
+             }
         }
 
         holder.btnDetalle.setOnClickListener {
