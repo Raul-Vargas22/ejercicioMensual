@@ -15,6 +15,4 @@ data class dataCursos (
     val cupo_maximo: String,
     val imagen_principal: String?,
     val estado: String,
-    val fecha_creacion: String?,
-
 )
