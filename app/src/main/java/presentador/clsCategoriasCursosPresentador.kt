@@ -2,12 +2,12 @@ package presentador
 
 import Modelo.clsCategoriasCursosModelo
 import Modelo.dataCategoriasCursos
-import vista.vistaCategoriasCursos
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import vista.vistaEstadoInscripciones
 
-class clsCategoriasCursosPresentador (private val vista: vistaCategoriasCursos ) {
+class clsCategoriasCursosPresentador (private val vista: vistaEstadoInscripciones ) {
     private val modelo = clsCategoriasCursosModelo()
     private var listaCategoria: List<dataCategoriasCursos> = emptyList()
 
@@ -28,7 +28,7 @@ class clsCategoriasCursosPresentador (private val vista: vistaCategoriasCursos )
         if(posicion >=0 && posicion < listaCategoria.size){
             val categoria = listaCategoria[posicion]
 
-            vista.categoriaSeleccionada (categoria.id_carrera, categoria.nombre
+            vista.mostrarMensajeExito (categoria.id_carrera, categoria.nombre
             )
         }
     }

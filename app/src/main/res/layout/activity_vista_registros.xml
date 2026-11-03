@@ -7,17 +7,6 @@
     android:layout_height="match_parent"
     tools:context="vista.vistaEstadoInscripciones">
 
-    <TextView
-        android:id="@+id/txtTitulo"
-        android:layout_width="270dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="4dp"
-        android:text="Registro de cursos"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="409dp"
         android:layout_height="729dp"
@@ -29,33 +18,36 @@
 
     <Spinner
         android:id="@+id/spnCategorias"
-        android:layout_width="209dp"
+        android:layout_width="348dp"
         android:layout_height="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtFiltrar" />
+        tools:layout_editor_absoluteY="60dp" />
 
     <Button
         android:id="@+id/btnVolver"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:text="Volver al catálogo"
+        android:layout_marginBottom="16dp"
+        android:background="#3F51B5"
+        android:text="VOLVER AL CATALOGO"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <TextView
-        android:id="@+id/txtFiltrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="Filtrar por:"
-        android:textSize="16sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="412dp"
+        android:layout_height="61dp"
+        android:background="#3F51B5"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="ESTADO DE INSCRIPCIONES"
+        app:titleTextColor="#FFFFFF" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

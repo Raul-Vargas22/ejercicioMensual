@@ -34,19 +34,18 @@
                 android:textSize="20dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/txtNumInscritos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Inscritos" />
-
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:max="50"
-                />
+                android:max="50" />
+
+            <TextView
+                android:id="@+id/txtNumInscritos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inscritos" />
 
         </LinearLayout>
 

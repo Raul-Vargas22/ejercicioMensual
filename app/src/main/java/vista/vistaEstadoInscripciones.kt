@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.ejerciciomensual.R
 import presentador.clsCategoriasCursosPresentador
 
-class vistaEstadoInscripciones: AppCompatActivity(), vistaCategoriasCursos {
+class vistaEstadoInscripciones: AppCompatActivity() {
     private lateinit var presentador: clsCategoriasCursosPresentador
     private lateinit var spinnerCategoriasCursos: Spinner
 
@@ -25,31 +25,31 @@ class vistaEstadoInscripciones: AppCompatActivity(), vistaCategoriasCursos {
         configurarListeners()
         presentador.iniciar()
     }
-    private fun configurarListeners(){
-        spinnerCategoriasCursos.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                presentador.seleccionarCategoria(position)
-            }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }
+    private fun configurarListeners() {
+        spinnerCategoriasCursos.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?, view: View?, position: Int, id: Long
+                ) {
+                    presentador.seleccionarCategoria(position)
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {}
+            }
     }
-    override fun mostrarCategorias(categorias: List<dataCategoriasCursos>){
+
+    fun mostrarCategorias(categorias: List<dataCategoriasCursos>) {
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, categorias)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerCategoriasCursos.adapter= adapter
+        spinnerCategoriasCursos.adapter = adapter
     }
-    override fun mostrarError(
-        mensaje: String
-    ) {
-        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
-    }
-    override fun categoriaSeleccionada(
-        id: Int,
-        nombre: String
-    ){
-        Toast.makeText(this,"Categoria seleccionada: $nombre", Toast.LENGTH_SHORT).show()
 
+    fun mostrarMensajeExito (id: Int, nombre: String){
+        Toast.makeText(this, "ID:"+ id.toString()+"-Seleccionaste:"+ nombre, Toast.LENGTH_SHORT).show()
+    }
+
+    fun mostrarError(mensaje: String){
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
     }
 }
