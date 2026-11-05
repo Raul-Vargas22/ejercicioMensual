@@ -1,15 +1,16 @@
 package com.example.ejerciciomensual.vista
 
 import android.os.Bundle
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.viewpager2.widget.ViewPager2
 import com.example.ejerciciomensual.R
 import com.example.ejerciciomensual.modelo.dataImagenesCursos
-import androidx.viewpager2.widget.ViewPager2
 import com.example.ejerciciomensual.Adaptador.GaleriaAdaptador
 import com.example.ejerciciomensual.presentador.clsDetalleCursos
 
@@ -20,10 +21,13 @@ class detalleCursos : AppCompatActivity() {
     private lateinit var txtDescripcionCurso: TextView
     private lateinit var txtLugar: TextView
     private lateinit var txtTotalHoras: TextView
+    private lateinit var txtDias: TextView
+    private lateinit var txtHoras: TextView
     private lateinit var txtCupoMaximo: TextView
 
     private lateinit var galeriaAdaptador: GaleriaAdaptador
 
+    private lateinit var btnRegresar: ImageButton
     private lateinit var presentador: clsDetalleCursos
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,41 +35,26 @@ class detalleCursos : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_detalle_cursos)
 
-        ViewCompat.setOnApplyWindowInsetsListener(
-            findViewById(R.id.main)
-        ) { v, insets ->
-
-            val systemBars = insets.getInsets(
-                WindowInsetsCompat.Type.systemBars()
-            )
-
-            v.setPadding(
-                systemBars.left,
-                systemBars.top,
-                systemBars.right,
-                systemBars.bottom
-            )
-
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        txtNombreCurso =
-            findViewById(R.id.txtNombreCurso)
+        txtNombreCurso = findViewById(R.id.txtNombreCurso)
+        txtCodigoCurso = findViewById(R.id.txtCodigoCurso)
+        txtDescripcionCurso = findViewById(R.id.txtDescripcionCurso)
+        txtLugar = findViewById(R.id.txtLugar)
+        txtTotalHoras = findViewById(R.id.txtTotalHoras)
+        txtDias = findViewById(R.id.txtDias)
+        txtHoras = findViewById(R.id.txtHoras)
+        txtCupoMaximo = findViewById(R.id.txtCupoMaximo)
 
-        txtCodigoCurso =
-            findViewById(R.id.txtCodigoCurso)
+        btnRegresar = findViewById(R.id.btnRegresar)
 
-        txtDescripcionCurso =
-            findViewById(R.id.txtDescripcionCurso)
-
-        txtLugar =
-            findViewById(R.id.txtLugar)
-
-        txtTotalHoras =
-            findViewById(R.id.txtTotalHoras)
-
-        txtCupoMaximo =
-            findViewById(R.id.txtCupoMaximo)
+        btnRegresar.setOnClickListener {
+            finish()
+        }
 
         val galeria = findViewById<ViewPager2>(R.id.imgCursos)
 
@@ -77,36 +66,26 @@ class detalleCursos : AppCompatActivity() {
         val idCurso = intent.getIntExtra("ID_CURSO", 0)
         presentador.cargarDetalleCurso(idCurso)
 
-        val nombreCurso =
-            intent.getStringExtra("NOMBRE_CURSO") ?: ""
+        val nombreCurso = intent.getStringExtra("NOMBRE_CURSO") ?: ""
+        val codigoCurso = intent.getStringExtra("CODIGO_CURSO") ?: ""
+        val descripcionCurso = intent.getStringExtra("DESCRIPCION_CURSO") ?: ""
+        val lugar = intent.getStringExtra("LUGAR") ?: ""
 
-        val codigoCurso =
-            intent.getStringExtra("CODIGO_CURSO") ?: ""
+        val totalHoras = intent.getIntExtra("TOTAL_HORAS", 0)
+        val cupoMaximo = intent.getIntExtra("CUPO_MAXIMO", 0)
 
-        val descripcionCurso =
-            intent.getStringExtra("DESCRIPCION_CURSO") ?: ""
+        val dias = intent.getStringExtra("DIAS") ?: ""
+        val horas = intent.getStringExtra("HORAS") ?: ""
 
-        val lugar =
-            intent.getStringExtra("LUGAR") ?: ""
-
-        val totalHoras =
-            intent.getStringExtra("TOTAL_HORAS") ?: ""
-
-        val cupoMaximo =
-            intent.getStringExtra("CUPO_MAXIMO") ?: ""
-
-        txtNombreCurso.text =
-            nombreCurso
-
-        txtCodigoCurso.text = "Código: " + codigoCurso
-
+        txtNombreCurso.text = nombreCurso
+        txtCodigoCurso.text = "Código: $codigoCurso"
         txtDescripcionCurso.text = descripcionCurso
+        txtLugar.text = "Lugar: $lugar"
 
-        txtLugar.text = "Lugar: " + lugar
-
-        txtTotalHoras.text = "Total horas: " + totalHoras
-
-        txtCupoMaximo.text = "Cupo máximo: " + cupoMaximo
+        txtTotalHoras.text = "Total de Horas: $totalHoras horas"
+        txtDias.text = "Días de atención: $dias"
+        txtHoras.text = "Horario de atención: $horas"
+        txtCupoMaximo.text = "Cupo máximo: $cupoMaximo alumnos"
     }
 
     fun mostrarImagenes(listaImagenes: List<dataImagenesCursos>) {
@@ -114,11 +93,6 @@ class detalleCursos : AppCompatActivity() {
     }
 
     fun mostrarError(mensaje: String) {
-
-        Toast.makeText(
-            this,
-            mensaje,
-            Toast.LENGTH_LONG
-        ).show()
+        Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
     }
 }

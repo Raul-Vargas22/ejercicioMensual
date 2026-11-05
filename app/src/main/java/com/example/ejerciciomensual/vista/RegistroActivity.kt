@@ -9,6 +9,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ejerciciomensual.R
 import com.example.ejerciciomensual.presentador.RegistroPresentador
+import com.bumptech.glide.Glide
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class RegistroActivity : AppCompatActivity() {
 
@@ -24,91 +28,62 @@ class RegistroActivity : AppCompatActivity() {
     private lateinit var btnConfirmarInscripcion: Button
     private lateinit var btnCancelar: Button
 
-    private lateinit var presentador:
-            RegistroPresentador
+    private lateinit var presentador: RegistroPresentador
 
     private var idCurso: Int = 0
 
-    override fun onCreate(
-        savedInstanceState: Bundle?
-    ) {
-
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.registro)
 
-        btnRegresar =
-            findViewById(R.id.btnRegresar)
+        btnRegresar = findViewById(R.id.btnRegresar)
+        txtTituloCurso = findViewById(R.id.txtTituloCurso)
+        txtNombreCurso = findViewById(R.id.txtNombreCurso)
+        imgCurso = findViewById(R.id.imgCurso)
 
-        txtTituloCurso =
-            findViewById(R.id.txtTituloCurso)
+        txtMatricula = findViewById(R.id.txtMatricula)
+        txtFechaRegistro = findViewById(R.id.txtFechaRegistro)
+        txtCorreo = findViewById(R.id.txtCorreo)
 
-        txtNombreCurso =
-            findViewById(R.id.txtNombreCurso)
+        // Mostrar la fecha actual y evitar que se pueda modificar
+        val fechaActual = SimpleDateFormat(
+            "dd/MM/yyyy",
+            Locale.getDefault()
+        ).format(Date())
 
-        imgCurso =
-            findViewById(R.id.imgCurso)
+        txtFechaRegistro.setText(fechaActual)
+        txtFechaRegistro.isFocusable = false
+        txtFechaRegistro.isFocusableInTouchMode = false
+        txtFechaRegistro.isClickable = false
+        txtFechaRegistro.isLongClickable = false
 
-        txtMatricula =
-            findViewById(R.id.txtMatricula)
+        btnConfirmarInscripcion = findViewById(R.id.btnConfirmarInscripcion)
+        btnCancelar = findViewById(R.id.btnCancelar)
 
-        txtFechaRegistro =
-            findViewById(R.id.txtFechaRegistro)
+        presentador = RegistroPresentador(this)
 
-        txtCorreo =
-            findViewById(R.id.txtCorreo)
+        idCurso = intent.getIntExtra("ID_CURSO", 0)
 
-        btnConfirmarInscripcion =
-            findViewById(
-                R.id.btnConfirmarInscripcion
-            )
+        val nombreCurso = intent.getStringExtra("NOMBRE_CURSO") ?: ""
+        val codigoCurso = intent.getStringExtra("CODIGO_CURSO") ?: ""
 
-        btnCancelar =
-            findViewById(R.id.btnCancelar)
+        txtTituloCurso.text = nombreCurso
+        txtNombreCurso.text = nombreCurso
 
-        presentador =
-            RegistroPresentador(this)
+        val imagenCurso = intent.getStringExtra("IMAGEN_CURSO") ?: ""
 
-        idCurso =
-            intent.getIntExtra(
-                "ID_CURSO",
-                0
-            )
+        val baseUrl = "http://10.115.22.102/api_cursos/Imagenes/principal/"
+        val urlImagenCompleta = baseUrl + imagenCurso.trimStart('/')
 
-        val nombreCurso =
-            intent.getStringExtra(
-                "NOMBRE_CURSO"
-            ) ?: ""
+        Glide.with(this)
+            .load(urlImagenCompleta)
+            .placeholder(android.R.drawable.ic_menu_gallery)
+            .error(android.R.drawable.ic_menu_report_image)
+            .into(imgCurso)
 
-        val codigoCurso =
-            intent.getStringExtra(
-                "CODIGO_CURSO"
-            ) ?: ""
-
-        txtTituloCurso.text =
-            nombreCurso
-
-        txtNombreCurso.text =
-            nombreCurso
-
-        when (codigoCurso) {
-
-            "IS102" ->
-                imgCurso.setImageResource(
-                    R.drawable.programacion
-                )
-
-            "BD201" ->
-                imgCurso.setImageResource(
-                    R.drawable.basedatos
-                )
+        btnConfirmarInscripcion.setOnClickListener {
+            ejecutarAccionInscribirse()
         }
-
-        btnConfirmarInscripcion
-            .setOnClickListener {
-
-                ejecutarAccionInscribirse()
-            }
 
         btnCancelar.setOnClickListener {
             finish()
@@ -117,38 +92,30 @@ class RegistroActivity : AppCompatActivity() {
         btnRegresar.setOnClickListener {
             finish()
         }
+
+        txtMatricula.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) {
+                presentador.buscarAlumno(txtMatricula.text.toString())
+            }
+        }
     }
 
     private fun ejecutarAccionInscribirse() {
+        val matricula = txtMatricula.text.toString()
+        val correo = txtCorreo.text.toString()
 
-        val matricula =
-            txtMatricula.text.toString()
+        presentador.registrarInscripcion(
+            matricula,
+            correo,
+            idCurso
+        )
+    }
 
-        val correo =
-            txtCorreo.text.toString()
+    fun mostrarMensaje(mensaje: String) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+    }
 
-        val valido =
-            presentador.validarInscripcion(
-                matricula,
-                correo,
-                idCurso
-            )
-
-        if (valido) {
-
-            Toast.makeText(
-                this,
-                "Datos válidos",
-                Toast.LENGTH_SHORT
-            ).show()
-
-        } else {
-
-            Toast.makeText(
-                this,
-                "Completa los campos, faltan datos",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
+    fun mostrarCorreo(correo: String) {
+        txtCorreo.setText(correo)
     }
 }

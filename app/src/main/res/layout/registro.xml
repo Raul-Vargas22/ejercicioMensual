@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Barra superior azul -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="56dp"
@@ -46,7 +45,6 @@
 
         </LinearLayout>
 
-        <!-- Contenido del formulario -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,7 +53,6 @@
             android:paddingEnd="24dp"
             android:paddingTop="22dp"
             android:paddingBottom="24dp">
-
 
             <TextView
                 android:layout_width="match_parent"
@@ -109,7 +106,6 @@
 
             </LinearLayout>
 
-            <!-- Matrícula -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -133,7 +129,6 @@
                 android:textColor="#222222"
                 android:textSize="15sp" />
 
-            <!-- Fecha de registro -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -150,14 +145,18 @@
                 android:layout_marginBottom="24dp"
                 android:background="@android:drawable/edit_text"
                 android:hint="AAAA-MM-DD"
-                android:inputType="date"
+                android:inputType="none"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:clickable="false"
+                android:longClickable="false"
+                android:cursorVisible="false"
                 android:paddingStart="12dp"
                 android:paddingEnd="12dp"
                 android:singleLine="true"
                 android:textColor="#222222"
                 android:textSize="15sp" />
 
-            <!-- Correo institucional -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -181,7 +180,6 @@
                 android:textColor="#222222"
                 android:textSize="15sp" />
 
-            <!-- Botón confirmar -->
             <Button
                 android:id="@+id/btnConfirmarInscripcion"
                 android:layout_width="match_parent"
@@ -193,7 +191,6 @@
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
-            <!-- Botón cancelar -->
             <Button
                 android:id="@+id/btnCancelar"
                 android:layout_width="match_parent"

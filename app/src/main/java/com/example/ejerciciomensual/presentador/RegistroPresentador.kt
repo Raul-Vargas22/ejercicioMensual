@@ -1,4 +1,3 @@
-
 package com.example.ejerciciomensual.presentador
 
 import com.example.ejerciciomensual.vista.RegistroActivity
@@ -19,7 +18,7 @@ class RegistroPresentador(private val vista: RegistroActivity) {
 
         CoroutineScope(Dispatchers.Main).launch {
             try {
-                val respuesta = modelo.registrarInscripcion(matricula,idCurso)
+                val respuesta = modelo.registrarInscripcion(matricula, idCurso)
 
                 vista.mostrarMensaje(respuesta.mensaje)
 
@@ -50,5 +49,4 @@ class RegistroPresentador(private val vista: RegistroActivity) {
             }
         }
     }
-
 }
